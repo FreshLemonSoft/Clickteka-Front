@@ -3,6 +3,7 @@ import {
   Switch, Route, Redirect, BrowserRouter,
 } from 'react-router-dom';
 import Home from './Home/Home';
+import Login from './Login/Login';
 
 const Root = () => {
   const isAuthComplete = true;
@@ -10,13 +11,17 @@ const Root = () => {
     <BrowserRouter>
       {isAuthComplete && <div>Header</div>}
       <Switch>
-        <Route exact path="/authorization" component={<div>Authorization</div>} />
-        {isAuthComplete && (
+        <Route exact path="/" component={Home} />
+        <Route path="/authorization" component={Login} />
+        <Route path="/registration">
+          <Login registration />
+        </Route>
+        {/* {isAuthComplete && (
           <>
-            <Route exact path="/home" component={Home} />
+            <Route exact path="/" component={Home} />
           </>
-        )}
-        <Redirect to={isAuthComplete ? '/home' : '/authorization'} />
+        )} */}
+        <Redirect to={isAuthComplete ? '/' : '/authorization'} />
       </Switch>
     </BrowserRouter>
   );
