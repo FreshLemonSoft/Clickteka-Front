@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 
 import { signinUser, signupUser } from '../../api/api';
+import { setUserData } from '../../redux/reducers/loginReducer';
 
 const validate = (values) => {
   const errors = {};
@@ -26,6 +29,16 @@ const validate = (values) => {
 };
 
 const LoginForm = ({ registration }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const setValues = (data) => {
+    localStorage.setItem('accessToken', data.accessToken);
+    localStorage.setItem('refreshToken', data.refreshToken);
+    dispatch(setUserData({ email: data.user.email, role: data.user.role }));
+    history.push('/');
+  };
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -34,15 +47,18 @@ const LoginForm = ({ registration }) => {
 
     validate,
 
-    onSubmit: async (values) => {
+    onSubmit: (values) => {
       const { email, password } = values;
-      let req;
       if (registration) {
-        req = await signupUser({ email, password });
+        signupUser({ email, password })
+          .then(() => signinUser({ email, password }))
+          .then((request) => setValues(request.data))
+          .catch((e) => console.log(e.message));
       } else {
-        req = await signinUser({ email, password });
+        signinUser({ email, password })
+          .then((request) => setValues(request.data))
+          .catch((e) => console.log(e.message));
       }
-      console.log(req.data);
     },
 
   });
