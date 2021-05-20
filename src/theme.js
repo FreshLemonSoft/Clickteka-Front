@@ -18,6 +18,8 @@ const theme = createMuiTheme({
     primary: {
       main: '#ED30AD',
       contrastText: '#fff',
+      button: 'linear-gradient(45deg, #ED30AD 0%, #B52A9E 44.96%, #AA19DD 81.4%, #592B7D 100%)',
+      disabledButton: 'linear-gradient(45deg, #ED30AD 20%, #B52A9E 20%, #AA19DD 20%, #592B7D 20%)',
     },
     secondary: {
       main: '#A6A6A6',
@@ -31,7 +33,6 @@ const theme = createMuiTheme({
     },
     background: {
       default: '#E5E5E5',
-      secondary: 'linear-gradient(45deg,#ED30AD 0%, #B52A9E 44.96%, #AA19DD 81.4%, #592B7D 100%)',
     },
     link: {
       main: '#0C5FA5',
