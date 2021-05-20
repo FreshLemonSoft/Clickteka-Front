@@ -31,6 +31,7 @@ const theme = createMuiTheme({
     },
     background: {
       default: '#E5E5E5',
+      secondary: 'linear-gradient(45deg,#ED30AD 0%, #B52A9E 44.96%, #AA19DD 81.4%, #592B7D 100%)',
     },
     link: {
       main: '#0C5FA5',
