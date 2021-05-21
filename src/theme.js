@@ -32,7 +32,7 @@ const theme = createMuiTheme({
       main: '#4caf50',
     },
     background: {
-      default: '#E5E5E5',
+      default: '#fff',
     },
     link: {
       main: '#0C5FA5',

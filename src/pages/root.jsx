@@ -21,7 +21,7 @@ const Root = () => {
             <Route exact path="/home" component={Home} />
           </>
         )}
-        <Redirect to={isAuthComplete ? '/home' : paths.singIn} />
+        <Redirect to={Home} />
       </Switch>
     </BrowserRouter>
   );
