@@ -12,16 +12,17 @@ const Root = () => {
     <BrowserRouter>
       {isAuthComplete && <div>Header</div>}
       <Switch>
+        <Route exact path="/" component={Home} />
         <Route
           path={[paths.singIn, paths.signUp, paths.forgotPassword]}
           component={Authorization}
         />
-        {isAuthComplete && (
+        {/* {isAuthComplete && (
           <>
             <Route exact path="/home" component={Home} />
           </>
-        )}
-        <Redirect to={Home} />
+        )} */}
+        <Redirect to="/" />
       </Switch>
     </BrowserRouter>
   );
