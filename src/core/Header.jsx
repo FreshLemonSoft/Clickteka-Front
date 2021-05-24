@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   AppBar,
   Toolbar,
-  Typography,
   Button,
   IconButton,
   Drawer,
@@ -10,25 +9,56 @@ import {
   Link,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
+import SVG from 'react-inlinesvg';
+import OutlinedButton from '../components/OutlinedButton';
+import TextButton from '../components/TextButton';
 
 const useStyles = makeStyles((theme) => ({
   header: {
     backgroundColor: theme.palette.background.default,
-    paddingRight: 79,
-    paddingLeft: 118,
+    padding: '20px 79px 20px 118px',
     boxShadow: 'none',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     '@media (max-width: 900px)': {
       paddingLeft: 0,
     },
   },
   toolbar: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'end',
+    flexBasis: '80%',
+    paddingRight: 0,
   },
   drawerContainer: {
     padding: '20px 30px',
+  },
+  separator: {
+    backgroundImage: theme.palette.primary.button,
+    height: 30,
+    width: 2,
+  },
+  logo: {
+    height: '50px',
+    width: 'auto',
+  },
+  button: {
+    margin: '0 0.05%',
+  },
+  link: {
+    margin: '0 0.7%',
+    '&:hover': {
+      color: theme.palette.secondary.dark,
+    },
+  },
+  activeLink: {
+    backgroundImage: theme.palette.primary.button,
+    backgroundClip: 'text',
+    textFillColor: 'transparent',
   },
 }));
 
@@ -43,11 +73,11 @@ const headersData = [
   },
   {
     label: 'Features',
-    href: '/auth/sing-up',
+    href: '/auth/sign-in',
   },
   {
     label: 'About us',
-    href: '/auth/sing-up',
+    href: '/about',
   },
   {
     label: 'FAQ',
@@ -62,6 +92,7 @@ function Header() {
   });
 
   const { mobileView, drawerOpen } = state;
+  const { pathname } = useLocation();
 
   const classes = useStyles();
 
@@ -70,7 +101,9 @@ function Header() {
       ? setState((prevState) => ({ ...prevState, mobileView: true }))
       : setState((prevState) => ({ ...prevState, mobileView: false })));
     setResponsiveness();
-    window.addEventListener('resize', () => setResponsiveness());
+    window.addEventListener('resize', setResponsiveness);
+
+    return () => window.removeEventListener('resize', setResponsiveness);
   }, []);
 
   const getMenuButtons = () => (
@@ -82,21 +115,21 @@ function Header() {
           to: href,
           component: RouterLink,
         }}
+        className={href === pathname ? `${classes.link} ${classes.activeLink}` : classes.link}
       >
         {label}
       </Button>
     ))
   );
 
-  const appLogo = (
-    <Typography variant="h6" component="h1">
-      AppLogo
-    </Typography>
+  const LogoView = () => (
+    <div className={classes.logo}>
+      <SVG src="/logo.svg" />
+    </div>
   );
 
   const displayDesktop = () => (
     <Toolbar className={classes.toolbar}>
-      {appLogo}
       {getMenuButtons()}
     </Toolbar>
   );
@@ -141,7 +174,7 @@ function Header() {
         >
           <div className={classes.drawerContainer}>{getDrawerChoices()}</div>
         </Drawer>
-        <div>{appLogo}</div>
+        {LogoView()}
       </Toolbar>
     );
   };
@@ -149,7 +182,15 @@ function Header() {
   return (
     <header>
       <AppBar className={classes.header}>
+        {!mobileView && LogoView()}
         {mobileView ? displayMobile() : displayDesktop()}
+        <div className={classes.separator} />
+        <div className={classes.button}>
+          <TextButton name="log in" action={() => { }} />
+        </div>
+        <div className={classes.button}>
+          <OutlinedButton name="sign up" action={() => { }} />
+        </div>
       </AppBar>
     </header>
   );

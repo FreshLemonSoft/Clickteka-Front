@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from '../../core/Header';
 
-const Home = () => (
+const AboutUs = () => (
   <div>
     <Header />
-    <div style={{ marginTop: '120px' }}>home</div>
+    <div style={{ marginTop: '120px' }}>About Us</div>
   </div>
 );
 
-export default Home;
+export default AboutUs;
