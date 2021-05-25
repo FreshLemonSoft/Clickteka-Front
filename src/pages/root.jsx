@@ -19,11 +19,6 @@ const Root = () => {
           path={[paths.singIn, paths.signUp, paths.forgotPassword]}
           component={Authorization}
         />
-        {/* {isAuthComplete && (
-          <>
-            <Route exact path="/home" component={Home} />
-          </>
-        )} */}
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>
