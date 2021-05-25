@@ -25,7 +25,7 @@ const Authorization = ({ location }) => {
         <Box className={classes.logo} />
       </Box>
       <Box mx="120px" my="70px">
-        {pathname === paths.singIn && (<SignIn />)}
+        {pathname === paths.signIn && (<SignIn />)}
         {pathname === paths.signUp && (<SignUp />)}
         {pathname === paths.forgotPassword && (<ForgotPassword />)}
       </Box>

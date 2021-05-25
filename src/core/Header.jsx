@@ -9,11 +9,12 @@ import {
   Link,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { Link as RouterLink, useLocation, useHistory } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import SVG from 'react-inlinesvg';
 import OutlinedButton from '../components/OutlinedButton';
 import TextButton from '../components/TextButton';
+import { paths } from '../config';
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     '@media (max-width: 900px)': {
       paddingLeft: 0,
     },
+    position: 'static',
   },
   toolbar: {
     display: 'flex',
@@ -69,11 +71,11 @@ const headersData = [
   },
   {
     label: 'Templates',
-    href: '/auth/sing-up',
+    href: '/templates',
   },
   {
     label: 'Features',
-    href: '/auth/sign-in',
+    href: '/features',
   },
   {
     label: 'About us',
@@ -81,7 +83,7 @@ const headersData = [
   },
   {
     label: 'FAQ',
-    href: '/auth/sing-up',
+    href: '/faq',
   },
 ];
 
@@ -179,6 +181,8 @@ function Header() {
     );
   };
 
+  const history = useHistory();
+
   return (
     <header>
       <AppBar className={classes.header}>
@@ -186,10 +190,10 @@ function Header() {
         {mobileView ? displayMobile() : displayDesktop()}
         <div className={classes.separator} />
         <div className={classes.button}>
-          <TextButton name="log in" action={() => { }} />
+          <TextButton name="log in" action={() => { history.push(paths.signIn); }} />
         </div>
         <div className={classes.button}>
-          <OutlinedButton name="sign up" action={() => { }} />
+          <OutlinedButton name="sign up" action={() => { history.push(paths.signUp); }} />
         </div>
       </AppBar>
     </header>
