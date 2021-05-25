@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     display: 'flex',
-    justifyContent: 'end',
+    justifyContent: 'flex-end',
     flexBasis: '80%',
     paddingRight: 0,
   },
@@ -58,9 +58,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   activeLink: {
-    backgroundImage: theme.palette.primary.button,
-    backgroundClip: 'text',
-    textFillColor: 'transparent',
+    color: theme.palette.primary.main,
   },
 }));
 

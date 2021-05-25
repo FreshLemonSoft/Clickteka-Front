@@ -22,11 +22,9 @@ const useStyles = makeStyles((theme) => ({
   button: (props) => ({
     width: buttonSize[props.size].desktop,
     textTransform: 'capitalize',
-    backgroundImage: theme.palette.primary.button,
-    background: theme.palette.primary.button,
     border: `0.7px solid ${theme.palette.primary.main}`,
-    backgroundClip: 'text',
-    textFillColor: 'transparent',
+    color: theme.palette.primary.main,
+    boxShadow: '0.5px 0.5px 0.5px 0.5px rgba(255, 105, 135, .3)',
     letterSpacing: 0.5,
     borderRadius: 40,
     height: 40,
