@@ -5,16 +5,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const buttonSize = {
   small: {
-    desktop: 203,
-    mobile: 180,
+    desktop: 196,
+    mobile: 172,
   },
   medium: {
-    desktop: 300,
-    mobile: 215,
+    desktop: 392,
+    mobile: 207,
   },
   large: {
-    desktop: 400,
-    mobile: 280,
+    desktop: 382,
+    mobile: 272,
   },
 };
 
@@ -27,14 +27,14 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'capitalize',
     letterSpacing: 0.5,
     borderRadius: 40,
-    height: 37,
+    height: 63,
     padding: '0 30px',
     fontWeight: 500,
-    fontSize: 16,
+    fontSize: 25,
     [theme.breakpoints.down('sm')]: {
       width: buttonSize[props.size].mobile,
-      height: 30,
-      fontSize: 14,
+      height: 54,
+      fontSize: 18,
     },
     '&.MuiButtonBase-root:disabled': {
       background: theme.palette.secondary.main,
@@ -44,20 +44,20 @@ const useStyles = makeStyles((theme) => ({
   border: (props) => ({
     background: props.disabled
       ? theme.palette.primary.disabledButton : theme.palette.primary.button,
-    width: buttonSize[props.size].desktop + 10,
-    height: 47,
+    width: buttonSize[props.size].desktop + 18,
+    height: 83,
     [theme.breakpoints.down('sm')]: {
-      width: buttonSize[props.size].mobile + 10,
-      height: 37,
+      width: buttonSize[props.size].mobile + 18,
+      height: 73,
     },
   }),
   gap: (props) => ({
     background: theme.palette.background.default,
-    width: buttonSize[props.size].desktop + 8,
-    height: 45,
+    width: buttonSize[props.size].desktop + 14.5,
+    height: 80,
     [theme.breakpoints.down('sm')]: {
-      width: buttonSize[props.size].mobile + 8,
-      height: 35,
+      width: buttonSize[props.size].mobile + 14.5,
+      height: 70,
     },
   }),
   wrapper: {

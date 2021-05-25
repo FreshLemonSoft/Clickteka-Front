@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles, Box } from '@material-ui/core';
+import SVG from 'react-inlinesvg';
 import { paths } from '../../config';
 import { SignIn, SignUp, ForgotPassword } from './forms';
 
@@ -14,6 +15,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const LogoView = () => (
+  <Box height="66px" width="100px">
+    <SVG src="/logo.svg" />
+  </Box>
+);
+
 // eslint-disable-next-line react/prop-types
 const Authorization = ({ location }) => {
   // eslint-disable-next-line react/prop-types
@@ -21,10 +28,8 @@ const Authorization = ({ location }) => {
   const classes = useStyles();
   return (
     <Box className={classes.container} component="main" maxWidth="xs">
-      <Box my="20px">
-        <Box className={classes.logo} />
-      </Box>
-      <Box mx="120px" my="70px">
+      <LogoView />
+      <Box mx="120px" maxWidth="400px" my="70px">
         {pathname === paths.signIn && (<SignIn />)}
         {pathname === paths.signUp && (<SignUp />)}
         {pathname === paths.forgotPassword && (<ForgotPassword />)}

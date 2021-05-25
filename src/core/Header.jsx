@@ -184,19 +184,34 @@ function Header() {
   const history = useHistory();
 
   return (
-    <header>
-      <AppBar className={classes.header}>
-        {!mobileView && LogoView()}
-        {mobileView ? displayMobile() : displayDesktop()}
-        <div className={classes.separator} />
-        <div className={classes.button}>
-          <TextButton name="log in" action={() => { history.push(paths.signIn); }} />
-        </div>
-        <div className={classes.button}>
-          <OutlinedButton name="sign up" action={() => { history.push(paths.signUp); }} />
-        </div>
-      </AppBar>
-    </header>
+    <>
+      {![paths.signIn, paths.signUp, paths.forgotPassword].some((p) => p === pathname)
+      && (
+      <header>
+        <AppBar className={classes.header}>
+          {!mobileView && LogoView()}
+          {mobileView ? displayMobile() : displayDesktop()}
+          <div className={classes.separator} />
+          <div className={classes.button}>
+            <TextButton
+              name="log in"
+              action={() => {
+                history.push(paths.signIn);
+              }}
+            />
+          </div>
+          <div className={classes.button}>
+            <OutlinedButton
+              name="sign up"
+              action={() => {
+                history.push(paths.signUp);
+              }}
+            />
+          </div>
+        </AppBar>
+      </header>
+      )}
+    </>
   );
 }
 
